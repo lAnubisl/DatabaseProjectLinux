@@ -5,8 +5,9 @@ This is a sample repository that shows how to create SQL Database on Azure and d
 The full article can be found here [https://byalexblog.net/article/azure-sql-schema-deployment/](https://byalexblog.net/article/azure-sql-schema-deployment/)
 
 
-## 1. Install dotnet6. See: https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian (later versions are not supported by sqlpackage as of 1 Jub 2023)
-``` 
+## 1. Install dotnet 6. 
+See: https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian (later versions are not supported by sqlpackage as of 1 Jub 2023)
+```bash
 wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
@@ -14,15 +15,17 @@ sudo apt-get update
 sudo apt-get install -y dotnet-sdk-6.0
 ```
 
-## 2. Install SqlPackage. See: https://github.com/microsoft/DacFx
-```
+## 2. Install SqlPackage.
+See: https://github.com/microsoft/DacFx
+```bash
 dotnet tool install -g microsoft.sqlpackage
 export PATH="$PATH:/home/codespace/.dotnet/tools"
 ```
 
 
-## 3. Install Terraform. See: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
-```
+## 3. Install Terraform.
+See: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+```bash
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 sudo apt update && sudo apt install gpg
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
@@ -31,20 +34,20 @@ sudo apt update
 sudo apt install terraform
 ```
 
-## 4. Install Database Project Template
-```
+## 4. Install Database Project Template.
+```bash
 dotnet new -i Microsoft.Build.Sql.Templates
 ```
 
 # Project
 
-## 1. Create new project
+## 1. Create new project.
 ```
 dotnet new sqlproj -n ProductsTutorial
 ```
 
-## 2. Add database entities (tables)
-```
+## 2. Add database entities (tables).
+```bash
 cd ProductsTutorial/
 
 echo -e "CREATE TABLE dbo.Item ( \n\
@@ -57,10 +60,10 @@ dotnet build --configuration Release
 cd ..
 ```
 
-# Indrastructure deployment
-```
+# Indrastructure deployment.
+```bash
 cd infrastructure
-terraform init -var-file="input.tfvars"
+terraform init -var-file="input.tfvars" # create your own input.tfvars with your values for terraform variables
 
 az login --tenant 00000000-0000-0000-0000-000000000000 --use-device-code
 az account set --subscription 00000000-0000-0000-0000-000000000000
@@ -69,8 +72,8 @@ terraform apply -var-file="input.tfvars"
 cd ..
 ```
 
-# Database Project deployment
-```
+# Database Project deployment.
+```bash
 token=$(az account get-access-token --resource=https://database.windows.net/ --query accessToken --output tsv)
 
 sqlpackage \
