@@ -1,4 +1,10 @@
 # Environment Setup
+## Description
+
+This is a sample repository that shows how to create SQL Database on Azure and deploy database schema to it.
+The full article can be found here [https://byalexblog.net/article/azure-sql-schema-deployment/](https://byalexblog.net/article/azure-sql-schema-deployment/)
+
+
 ## 1. Install dotnet6. See: https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian (later versions are not supported by sqlpackage as of 1 Jub 2023)
 ``` 
 wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
