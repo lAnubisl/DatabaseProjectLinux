@@ -15,8 +15,10 @@ sudo apt-get install -y dotnet-sdk-6.0
 ```
 
 ## 2. Install SqlPackage. See: https://github.com/microsoft/DacFx
+```
 dotnet tool install -g microsoft.sqlpackage
 export PATH="$PATH:/home/codespace/.dotnet/tools"
+```
 
 
 ## 3. Install Terraform. See: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
